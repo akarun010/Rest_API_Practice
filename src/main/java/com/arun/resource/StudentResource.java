@@ -36,4 +36,11 @@ public class StudentResource {
         Student s1 = repo.updateStudent(id,student);
         return s1;
     }
+
+    @DELETE
+    @Path("/{id}")
+    public Student deleteStudent(@PathParam("id") int id){
+        Student s1 = repo.deleteStudent(id);
+        return s1;
+    }
 }

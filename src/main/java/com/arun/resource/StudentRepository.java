@@ -79,4 +79,15 @@ public class StudentRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public Student deleteStudent(int id) {
+        try(PreparedStatement statement = connection.prepareStatement("delete from students where id = ?")) {
+            statement.setInt(1,id);
+            statement.executeUpdate();
+            Student student = getStudentById(id);
+            return student;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

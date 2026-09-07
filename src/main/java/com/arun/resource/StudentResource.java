@@ -28,4 +28,12 @@ public class StudentResource {
         Student student = repo.getStudentById(id);
         return student;
     }
+
+    @PUT
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Path("/{id}")
+    public Student updateStudent(@PathParam("id") int id,Student student){
+        Student s1 = repo.updateStudent(id,student);
+        return s1;
+    }
 }

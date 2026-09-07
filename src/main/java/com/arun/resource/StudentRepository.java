@@ -63,4 +63,20 @@ public class StudentRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public Student updateStudent(int id, Student student) {
+        try(PreparedStatement statement = connection.prepareStatement("update students  set name = ? , email = ? where id = ?")) {
+            statement.setString(1,student.getName());
+            statement.setString(2,student.getEmail());
+            statement.setInt(3,id);
+            statement.executeUpdate();
+            Student s1 = new Student();
+            s1.setId(id);
+            s1.setName(student.getName());
+            s1.setEmail(student.getEmail());
+            return s1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
